@@ -1,8 +1,7 @@
 package br.com.tgid.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +25,9 @@ public class Cliente {
     @CPF(message = "Formato do CPF incorreto")
     private String cpf;
 
-    @NotBlank(message = "Campo não informado")
+    @NotBlank(message = "Campo não informado, insira um telefone")
+    @Size(min = 11, max = 11, message = "Formato válido: 11999999999")
+    @Pattern(regexp = "[0-9]+", message = "Formato válido: 11999999999")
     private String telefone;
 
     @NotBlank(message = "Campo não informado")

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -34,4 +35,10 @@ public class ClienteService {
         clienteRepository.deleteById(id);
         return listar();
     }
+
+    public Optional<Cliente> buscarCpf(String cpf) {
+        Optional<Cliente> cliente = clienteRepository.findByCpf(cpf);
+        return cliente;
+    }
+
 }
