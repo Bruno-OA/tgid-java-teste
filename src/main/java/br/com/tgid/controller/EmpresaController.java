@@ -31,10 +31,12 @@ public class EmpresaController {
                 .body(empresaService.criar(empresa));
     }
 
+    @GetMapping
     List<Empresa> listar() {
         return empresaService.listar();
     }
 
+    @PutMapping
     List<Empresa> atualizar(@RequestBody Empresa empresa) {
         return empresaService.atualizar(empresa);
     }
