@@ -2,23 +2,28 @@ package br.com.tgid.controller;
 
 import br.com.tgid.entity.Cliente;
 import br.com.tgid.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Clientes")
+@RequestMapping("/clientes")
 public class ClienteController {
 
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
 
+    @Autowired
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
     @PostMapping
-    List<Cliente> criar(Cliente cliente) {
-        return clienteService.criar(cliente);
+    ResponseEntity<List<Cliente>> criar( @RequestBody Cliente cliente) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(clienteService.criar(cliente));
     }
 
     @GetMapping
